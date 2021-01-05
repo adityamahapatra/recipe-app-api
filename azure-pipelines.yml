@@ -18,6 +18,11 @@ jobs:
         Dockerfile: ./Dockerfile
 
     - script: |
+        pip3 install setuptools
+      displayName: 'Install setuptools'
+      condition: succeeded()
+
+    - script: |
         pip3 install docker-compose
       displayName: 'Install docker-compose'
       condition: succeeded()
