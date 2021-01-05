@@ -1,11 +1,14 @@
 [flake8]
 
-max-line-length = 80
 exclude = 
-    # Exclude max line length checks for migration files.
-    */migrations,
+    */migrations
     __pycache__
+    .git
+    .venv
+    .vscode
+
+max-line-length = 80
 
 ignore = 
     F401  # Ignore unused imports.
-    E265  # Using the "Better Comments" extension requires ignoring this.
+    E265  # Using the *Better Comments* extension requires ignoring this check.
