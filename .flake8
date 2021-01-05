@@ -1,0 +1,9 @@
+[flake8]
+
+max-line-length = 80
+exclude = 
+    # Exclude max line length checks for migration files.
+    */migrations,
+    __pycache__
+
+ignore = F401  # Ignore unused imports.
