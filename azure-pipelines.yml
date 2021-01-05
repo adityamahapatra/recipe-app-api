@@ -28,11 +28,11 @@ jobs:
       condition: succeeded()
 
     - script: |
-        docker-compose run app sh -c "flake8"
-      displayName: 'Run flake8'
-      condition: succeeded()
-
-    - script: |
         docker-compose run app sh -c "python manage.py test"
       displayName: 'Run tests'
       condition: succeeded()
+
+    - script: |
+        docker-compose run app sh -c "flake8"
+      displayName: 'Run flake8'
+      condition: succeededOrFailed()
