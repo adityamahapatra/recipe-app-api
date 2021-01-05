@@ -18,8 +18,8 @@ jobs:
         Dockerfile: ./Dockerfile
 
     - script: |
-        pip3 install setuptools
-      displayName: 'Install setuptools'
+        pip3 install wheel setuptools
+      displayName: 'Install wheel & setuptools'
       condition: succeeded()
 
     - script: |
