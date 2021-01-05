@@ -7,7 +7,7 @@ jobs:
       vmImage: 'ubuntu-latest'
 
     variables:
-      imageName: 'pipelines-python-docker'
+      imageName: 'recipe-app-api'
 
     steps:
     - task: Docker@2
@@ -16,3 +16,18 @@ jobs:
         repository: $(imageName)
         command: build
         Dockerfile: ./Dockerfile
+
+    - script: |
+        pip install docker-compose
+      displayName: 'Install docker-compose'
+      condition: succeeded()
+
+    - script: |
+        docker-compose run app sh -c "flake8"
+      displayName: 'Run flake8'
+      condition: succeeded()
+
+    - script: |
+        docker-compose run app sh -c "python manage.py test"
+      displayName: 'Run tests'
+      condition: succeeded()
