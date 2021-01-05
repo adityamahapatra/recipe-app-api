@@ -6,4 +6,6 @@ exclude =
     */migrations,
     __pycache__
 
-ignore = F401  # Ignore unused imports.
+ignore = 
+    F401  # Ignore unused imports.
+    E265  # Using the "Better Comments" extension requires ignoring this.
