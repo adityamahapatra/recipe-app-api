@@ -16,18 +16,3 @@ jobs:
         repository: $(imageName)
         command: build
         Dockerfile: ./Dockerfile
-
-  - job: Windows
-    pool:
-      vmImage: 'windows-latest'
-
-    variables:
-      imageName: 'pipelines-python-docker'
-
-    steps:
-    - task: Docker@2
-      displayName: Build a docker image
-      inputs:
-        repository: $(imageName)
-        command: build
-        Dockerfile: ./Dockerfile
