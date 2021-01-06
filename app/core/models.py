@@ -13,6 +13,9 @@ class UserManager(BaseUserManager):
         password: Optional[str] = None,
         **extra_fields: dict[str, Any]
     ):
+        if not email:
+            raise ValueError("No email specified for the new user")
+
         """Creates and saves a new user."""
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
