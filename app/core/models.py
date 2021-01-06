@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin, User
 
 
 class UserManager(BaseUserManager):
@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
         email: str,
         password: Optional[str] = None,
         **extra_fields: dict[str, Any]
-    ):
+    ) -> User:
         if not email:
             raise ValueError("No email specified for the new user")
 
@@ -22,6 +22,14 @@ class UserManager(BaseUserManager):
         #? The kwarg "using=self._db" allows the usage of multiple databases.
         user.save(using=self._db)
 
+        return user
+
+    def create_super_user(self, email: str, password: str) -> User:
+        """Create and save a new super user."""
+        user = self.create_user(email=email, password=password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
         return user
 
 
