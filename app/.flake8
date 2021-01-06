@@ -7,7 +7,7 @@ exclude =
     .venv
     .vscode
 
-max-line-length = 80
+max-line-length = 99
 
 ignore = 
     F401  # Ignore unused imports.
