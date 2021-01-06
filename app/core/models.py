@@ -14,7 +14,7 @@ class UserManager(BaseUserManager):
         **extra_fields: dict[str, Any]
     ):
         """Creates and saves a new user."""
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         #? The kwarg "using=self._db" allows the usage of multiple databases.
         user.save(using=self._db)
