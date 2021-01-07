@@ -6,12 +6,8 @@ from django.contrib.auth.models import PermissionsMixin
 
 
 class UserManager(BaseUserManager):
-
     def create_user(
-        self,
-        email: str,
-        password: Optional[str] = None,
-        **extra_fields: dict[str, Any]
+        self, email: str, password: Optional[str] = None, **extra_fields: dict[str, Any]
     ):
         if not email:
             raise ValueError("No email specified for the new user")
@@ -19,7 +15,7 @@ class UserManager(BaseUserManager):
         """Creates and saves a new user."""
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
-        #? The kwarg "using=self._db" allows the usage of multiple databases.
+        # ? The kwarg "using=self._db" allows the usage of multiple databases.
         user.save(using=self._db)
 
         return user

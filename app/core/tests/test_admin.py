@@ -5,21 +5,17 @@ from django.urls import reverse
 
 
 class AdminSiteTests(TestCase):
-
     def setUp(self) -> None:
         self.client = Client()
         admin_email = "test.super.user@gmail.com"
         email = "test.user@gmail.com"
         password = "testpass123"
         self.admin_user = get_user_model().objects.create_super_user(
-            email=admin_email,
-            password=password,
+            email=admin_email, password=password
         )
         self.client.force_login(user=self.admin_user)
         self.user = get_user_model().objects.create_user(
-            email=email,
-            password=password,
-            name="Test User"
+            email=email, password=password, name="Test User"
         )
 
     def test_users_listed(self) -> None:
