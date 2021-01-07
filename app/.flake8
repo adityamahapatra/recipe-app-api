@@ -8,7 +8,3 @@ exclude =
     .vscode
 
 max-line-length = 99
-
-ignore = 
-    F401  # Ignore unused imports.
-    E265  # Using the *Better Comments* extension requires ignoring this check.
