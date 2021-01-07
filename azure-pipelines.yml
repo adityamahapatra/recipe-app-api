@@ -28,6 +28,16 @@ jobs:
       condition: succeeded()
 
     - script: |
+        docker-compose run app sh -c "python manage.py wait_for_db"
+      displayName: 'Initialize PostgreSQL server'
+      condition: succeeded()
+
+    - script: |
+        docker-compose run app sh -c "python manage.py migrate"
+      displayName: 'Migrate the databases'
+      condition: succeeded()
+
+    - script: |
         docker-compose run app sh -c "python manage.py test"
       displayName: 'Run tests'
       condition: succeeded()
