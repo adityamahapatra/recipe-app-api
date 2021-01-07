@@ -9,7 +9,7 @@ class AdminSiteTests(TestCase):
         admin_email = "test.super.user@gmail.com"
         email = "test.user@gmail.com"
         password = "testpass123"
-        self.admin_user = get_user_model().objects.create_super_user(
+        self.admin_user = get_user_model().objects.create_superuser(
             email=admin_email, password=password
         )
         self.client.force_login(user=self.admin_user)
